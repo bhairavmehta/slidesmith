@@ -1,0 +1,54 @@
+{
+  "name": "default",
+  "description": "Clean corporate. Calibri is installed with every copy of Office; LibreOffice substitutes the metric-compatible Carlito, so text fitting stays accurate everywhere.",
+  "fonts": { "heading": "Calibri", "body": "Calibri" },
+  "colors": {
+    "bg": "#FFFFFF",
+    "surface": "#F3F5F8",
+    "line": "#DDE2E8",
+    "ink": "#17202B",
+    "muted": "#5E6B7A",
+    "primary": "#15294A",
+    "on_primary": "#FFFFFF",
+    "accent": "#E0663A",
+    "positive": "#1E8A5F",
+    "negative": "#C2402F",
+    "chart_muted": "#C8CED6"
+  },
+  "chart_palette": ["#2C5A8C", "#E0663A", "#4E9C88", "#C9A227", "#7E6AAE", "#8C97A4"],
+  "slide": {
+    "width_in": 13.333,
+    "height_in": 7.5,
+    "margin_x": 0.65,
+    "margin_top": 0.55,
+    "title_h": 1.05,
+    "content_top": 1.85,
+    "margin_bottom": 0.55,
+    "gutter": 0.45,
+    "size": {
+      "cover_title": 44,
+      "cover_subtitle": 20,
+      "kicker": 13,
+      "title": 28,
+      "section": 40,
+      "body": 20,
+      "body_min": 13,
+      "sub": 16,
+      "small": 11,
+      "big_number": 110,
+      "kpi_value": 44,
+      "kpi_label": 14,
+      "quote": 30,
+      "takeaway": 16,
+      "table": 16
+    },
+    "line_spacing": 1.1
+  },
+  "doc": {
+    "page": "letter",
+    "margin_in": 1.0,
+    "size": { "title": 28, "subtitle": 14, "h1": 18, "h2": 14, "h3": 12, "body": 11, "small": 9, "kpi_value": 22 },
+    "line_spacing": 1.2,
+    "para_after_pt": 8
+  }
+}

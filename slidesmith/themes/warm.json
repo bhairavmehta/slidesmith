@@ -1,0 +1,21 @@
+{
+  "extends": "default",
+  "name": "warm",
+  "description": "Editorial and warm: cream background, near-black ink, clay accent. Uses Inter (free, https://rsms.me/inter) — install it on machines that will open the files, or text will reflow.",
+  "fonts": { "heading": "Inter", "body": "Inter" },
+  "colors": {
+    "bg": "#FAF9F5",
+    "surface": "#F0EEE6",
+    "line": "#E3DFD3",
+    "ink": "#1F1E1C",
+    "muted": "#6B675E",
+    "primary": "#262624",
+    "on_primary": "#FAF9F5",
+    "accent": "#C96442",
+    "chart_muted": "#D9D4C7"
+  },
+  "chart_palette": ["#C96442", "#3D6B6E", "#8C7A5B", "#5A6E9C", "#B8973F", "#9C9488"],
+  "slide": {
+    "size": { "title": 26, "body": 18, "cover_title": 42, "quote": 28 }
+  }
+}

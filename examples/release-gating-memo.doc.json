@@ -1,0 +1,210 @@
+{
+  "kind": "doc",
+  "title": "Proposal: mandatory evaluation gates for LLM releases",
+  "sources": [
+    "data/q3-eval-metrics.xlsx",
+    "data/program-notes.md"
+  ],
+  "subtitle": "Why we should block releases that fail automated evaluation, and how to roll it out by Q1",
+  "author": "AI Engineering",
+  "date": "October 2026",
+  "header": "Illustrative example · Internal",
+  "blocks": [
+    {
+      "type": "callout",
+      "kind": "key",
+      "title": "Recommendation",
+      "text": "Make automated evaluation a **required release gate** for every LLM feature from January. The judge now agrees with expert raters (κ = 0.82) and would have caught all three Q3 regressions."
+    },
+    {
+      "type": "kpis",
+      "items": [
+        {
+          "value": "86%",
+          "label": "Traffic scored daily",
+          "delta": "+61 pts since Q1"
+        },
+        {
+          "value": "0.82",
+          "label": "Judge–expert agreement",
+          "delta": "+0.09 vs. Q2"
+        },
+        {
+          "value": "-71%",
+          "label": "Cost vs. manual QA",
+          "sentiment": "positive",
+          "delta": "$0.004 per conversation"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Background"
+    },
+    {
+      "type": "paragraph",
+      "text": "Until this year, LLM quality was measured by sampling about 2% of conversations for manual review. Findings arrived two weeks after a release, which meant regressions were discovered by customers first. Since April we have run an LLM-as-judge pipeline that scores most production conversations daily against a shared rubric."
+    },
+    {
+      "type": "paragraph",
+      "text": "The judge is now accurate enough to act on. Agreement with expert human raters has reached **0.82 Cohen's κ** across six channels, above the 0.75 bar we set for decision use."
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "What the data shows"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quality varies most in billing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Billing resolution quality trails every other channel by at least 13 points. Root-cause review traced most failures to stale policy documents in the retrieval corpus rather than to the model itself."
+    },
+    {
+      "type": "chart",
+      "chart": {
+        "type": "bar",
+        "categories": [
+          "Billing",
+          "Device support",
+          "Plan changes",
+          "Network issues",
+          "Account access",
+          "Orders"
+        ],
+        "series": [
+          {
+            "name": "Resolution score",
+            "values": [
+              0.61,
+              0.74,
+              0.78,
+              0.81,
+              0.83,
+              0.88
+            ]
+          }
+        ],
+        "number_format": "0.00",
+        "highlight": 0
+      },
+      "caption": "Figure 1. Mean judge resolution score by channel, Jul–Sep 2026 (illustrative)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes are working"
+    },
+    {
+      "type": "paragraph",
+      "text": "Retrieval and prompt changes shipped since April cut unsupported claims by two-thirds. Every Q3 regression that reached customers would have failed a gate on at least two metrics when replayed."
+    },
+    {
+      "type": "table",
+      "columns": [
+        "Channel",
+        "Coverage",
+        "κ",
+        "Resolution",
+        "Status"
+      ],
+      "rows": [
+        [
+          "Billing",
+          "91%",
+          "0.79",
+          "0.61",
+          "Rubric revision"
+        ],
+        [
+          "Device support",
+          "88%",
+          "0.77",
+          "0.74",
+          "Rubric revision"
+        ],
+        [
+          "Plan changes",
+          "85%",
+          "0.84",
+          "0.78",
+          "Gating live"
+        ],
+        [
+          "Network issues",
+          "83%",
+          "0.85",
+          "0.81",
+          "Gating live"
+        ],
+        [
+          "Account access",
+          "80%",
+          "0.86",
+          "0.83",
+          "Gating live"
+        ],
+        [
+          "Orders",
+          "79%",
+          "0.88",
+          "0.88",
+          "Gating live"
+        ]
+      ],
+      "caption": "Table 1. Evaluation readiness by channel (illustrative)."
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Proposal"
+    },
+    {
+      "type": "bullets",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**Fix billing retrieval first.** Refresh the policy corpus weekly and require citations in answers."
+        },
+        {
+          "text": "**Calibrate scores per channel** so a threshold means the same thing everywhere.",
+          "sub": [
+            "Platt scaling against a held-out expert-labelled set",
+            "Thresholds signed off by each channel owner"
+          ]
+        },
+        {
+          "text": "**Make the gate mandatory** for all LLM releases from January, with a documented override path."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "kind": "warning",
+      "title": "Risk",
+      "text": "A miscalibrated gate could block good releases. The override path and monthly threshold review are there to contain that, and we will report false-block rates alongside the gate results."
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "Decisions requested"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Approve two engineers for Q1 calibration and retrieval work",
+        "Endorse mandatory release gating from January",
+        "Nominate one owner per channel for rubric sign-off"
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "For the first time we found out about a quality problem before our customers did.",
+      "attribution": "Channel owner, Device Support"
+    }
+  ]
+}

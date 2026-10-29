@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slidesmith"
+version = "0.1.0"
+description = "Deterministic slide/document renderer with a render → inspect → fix loop, built to be driven by an LLM agent."
+requires-python = ">=3.10"
+dependencies = [
+  "python-pptx>=1.0",
+  "python-docx>=1.1",
+  "pydantic>=2.6",
+  "pillow>=10",
+  "matplotlib>=3.8",
+  "lxml>=5",
+]
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.2"]
+office = ["pywin32>=306; sys_platform == 'win32'", "pypdfium2>=4"]
+
+[project.scripts]
+slidesmith = "slidesmith.cli:main"
+slidesmith-mcp = "slidesmith.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["slidesmith*"]
+
+[tool.setuptools.package-data]
+slidesmith = ["themes/*.json"]

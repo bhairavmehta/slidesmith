@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "kind": "doc",
+  "output": "examples/build/release-gating-memo/release-gating-memo.docx",
+  "pdf": "examples/build/release-gating-memo/release-gating-memo.pdf",
+  "pages": [
+    "examples/build/release-gating-memo/pages/page-01.png",
+    "examples/build/release-gating-memo/pages/page-02.png",
+    "examples/build/release-gating-memo/pages/page-03.png"
+  ],
+  "contact_sheet": "examples/build/release-gating-memo/contact_sheet.png",
+  "renderer": "libreoffice",
+  "report": null,
+  "summary": {
+    "score": 100,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0,
+    "issues": [
+      {
+        "where": "global",
+        "index": 0,
+        "severity": "info",
+        "rule": "renderer",
+        "message": "office unavailable: Microsoft Office export needs Windows or macOS.",
+        "hint": ""
+      }
+    ]
+  }
+}

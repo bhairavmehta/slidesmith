@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "kind": "deck",
+  "output": "examples/build/ai-eval-program/ai-eval-program.pptx",
+  "pdf": "examples/build/ai-eval-program/ai-eval-program.pdf",
+  "pages": [
+    "examples/build/ai-eval-program/pages/page-01.png",
+    "examples/build/ai-eval-program/pages/page-02.png",
+    "examples/build/ai-eval-program/pages/page-03.png",
+    "examples/build/ai-eval-program/pages/page-04.png",
+    "examples/build/ai-eval-program/pages/page-05.png",
+    "examples/build/ai-eval-program/pages/page-06.png",
+    "examples/build/ai-eval-program/pages/page-07.png",
+    "examples/build/ai-eval-program/pages/page-08.png",
+    "examples/build/ai-eval-program/pages/page-09.png",
+    "examples/build/ai-eval-program/pages/page-10.png",
+    "examples/build/ai-eval-program/pages/page-11.png",
+    "examples/build/ai-eval-program/pages/page-12.png",
+    "examples/build/ai-eval-program/pages/page-13.png"
+  ],
+  "contact_sheet": "examples/build/ai-eval-program/contact_sheet.png",
+  "renderer": "libreoffice",
+  "report": null,
+  "summary": {
+    "score": 100,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0,
+    "issues": [
+      {
+        "where": "global",
+        "index": 0,
+        "severity": "info",
+        "rule": "renderer",
+        "message": "office unavailable: Microsoft Office export needs Windows or macOS.",
+        "hint": ""
+      }
+    ]
+  }
+}

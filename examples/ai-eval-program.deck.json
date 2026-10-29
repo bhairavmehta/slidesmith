@@ -1,0 +1,276 @@
+{
+  "kind": "deck",
+  "title": "Scaling LLM Evaluation Across Customer Channels",
+  "sources": [
+    "data/q3-eval-metrics.xlsx",
+    "data/program-notes.md"
+  ],
+  "theme": "default",
+  "author": "AI Engineering",
+  "date": "October 2026",
+  "footer": "Illustrative example · Internal",
+  "slides": [
+    {
+      "layout": "title",
+      "kicker": "Program review · Q4 2026",
+      "title": "Scaling LLM evaluation from one channel to every channel",
+      "subtitle": "Automated judging now covers 86% of production traffic. Here is what it found, and what we need next."
+    },
+    {
+      "layout": "kpis",
+      "title": "Automated evaluation now covers most production traffic at a fraction of the cost",
+      "items": [
+        {
+          "value": "86%",
+          "label": "of production conversations scored daily",
+          "delta": "+61 pts since Q1"
+        },
+        {
+          "value": "0.82",
+          "label": "agreement with expert human raters (Cohen's κ)",
+          "delta": "+0.09 vs. Q2"
+        },
+        {
+          "value": "$0.004",
+          "label": "cost per evaluated conversation",
+          "delta": "-71% vs. manual QA",
+          "sentiment": "positive"
+        }
+      ],
+      "takeaway": "The judge is now trusted enough to gate releases, not just report on them."
+    },
+    {
+      "layout": "section",
+      "number": "01",
+      "title": "What the judge found",
+      "subtitle": "Quality signals from six channels over the last 90 days"
+    },
+    {
+      "layout": "chart",
+      "title": "Resolution quality varies most in billing, where fixes would pay back fastest",
+      "chart": {
+        "type": "bar",
+        "categories": [
+          "Billing",
+          "Device support",
+          "Plan changes",
+          "Network issues",
+          "Account access",
+          "Orders"
+        ],
+        "series": [
+          {
+            "name": "Resolution score",
+            "values": [
+              0.61,
+              0.74,
+              0.78,
+              0.81,
+              0.83,
+              0.88
+            ]
+          }
+        ],
+        "number_format": "0.00",
+        "highlight": 0
+      },
+      "takeaway": "Billing scores 0.61 — 13 points below the next-worst channel. Most failures trace to stale policy content in retrieval.",
+      "source": "Judge scores, Jul–Sep 2026 (illustrative)"
+    },
+    {
+      "layout": "chart",
+      "title": "Hallucination rate fell by two-thirds after retrieval and prompt fixes",
+      "chart": {
+        "type": "line",
+        "categories": [
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
+        ],
+        "series": [
+          {
+            "name": "Unsupported claims",
+            "values": [
+              0.072,
+              0.065,
+              0.051,
+              0.038,
+              0.029,
+              0.024
+            ]
+          },
+          {
+            "name": "Policy violations",
+            "values": [
+              0.031,
+              0.03,
+              0.026,
+              0.022,
+              0.018,
+              0.015
+            ]
+          }
+        ],
+        "number_format": "0.0%"
+      },
+      "source": "Share of judged conversations flagged (illustrative)"
+    },
+    {
+      "layout": "big_number",
+      "title": "Release gating would have stopped three regressions before customers saw them",
+      "number": "3 of 3",
+      "label": "Q3 regressions caught in replay before rollout",
+      "context": "We replayed every Q3 release against the judge. Each regression that reached customers would have failed the gate on at least two metrics."
+    },
+    {
+      "layout": "two_column",
+      "style": "before_after",
+      "title": "Moving from sampled manual QA to continuous automated evaluation",
+      "left": {
+        "heading": "Before",
+        "bullets": [
+          "2% of conversations sampled by hand",
+          "Findings arrive two weeks late",
+          "No signal at release time"
+        ]
+      },
+      "right": {
+        "heading": "Now",
+        "bullets": [
+          "86% scored automatically every day",
+          "Dashboards refresh hourly",
+          "Releases gated on judge metrics"
+        ]
+      }
+    },
+    {
+      "layout": "table",
+      "title": "Every channel clears the agreement bar; billing and device support need rubric work",
+      "columns": [
+        "Channel",
+        "Coverage",
+        "Judge–human κ",
+        "Resolution",
+        "Status"
+      ],
+      "rows": [
+        [
+          "Billing",
+          "91%",
+          "0.79",
+          "0.61",
+          "Rubric revision"
+        ],
+        [
+          "Device support",
+          "88%",
+          "0.77",
+          "0.74",
+          "Rubric revision"
+        ],
+        [
+          "Plan changes",
+          "85%",
+          "0.84",
+          "0.78",
+          "Gating live"
+        ],
+        [
+          "Network issues",
+          "83%",
+          "0.85",
+          "0.81",
+          "Gating live"
+        ],
+        [
+          "Account access",
+          "80%",
+          "0.86",
+          "0.83",
+          "Gating live"
+        ],
+        [
+          "Orders",
+          "79%",
+          "0.88",
+          "0.88",
+          "Gating live"
+        ]
+      ],
+      "highlight_row": 0,
+      "source": "Illustrative data"
+    },
+    {
+      "layout": "section",
+      "number": "02",
+      "title": "What we need next"
+    },
+    {
+      "layout": "bullets",
+      "title": "Three investments turn evaluation into a release control",
+      "bullets": [
+        {
+          "text": "**Fix billing retrieval** before adding more judge coverage",
+          "sub": [
+            "Refresh policy corpus weekly",
+            "Add citation-required prompting"
+          ]
+        },
+        {
+          "text": "**Calibrate judge scores** so thresholds mean the same thing on every channel",
+          "sub": [
+            "Platt scaling per channel against expert labels"
+          ]
+        },
+        {
+          "text": "**Make the gate mandatory** for all LLM releases from January"
+        }
+      ],
+      "takeaway": "Ask: approve two engineers for Q1 and the January gating policy."
+    },
+    {
+      "layout": "timeline",
+      "title": "Roll-out plan: gating mandatory for every channel by end of Q1",
+      "steps": [
+        {
+          "label": "Nov",
+          "title": "Billing retrieval fix",
+          "detail": "Corpus refresh and citation prompting in production"
+        },
+        {
+          "label": "Dec",
+          "title": "Per-channel calibration",
+          "detail": "Thresholds agreed with channel owners"
+        },
+        {
+          "label": "Jan",
+          "title": "Gating mandatory",
+          "detail": "All LLM releases pass replay evaluation"
+        },
+        {
+          "label": "Mar",
+          "title": "Full coverage",
+          "detail": "Remaining 14% of traffic onboarded"
+        }
+      ]
+    },
+    {
+      "layout": "quote",
+      "quote": "For the first time we found out about a quality problem before our customers did.",
+      "attribution": "Channel owner, Device Support"
+    },
+    {
+      "layout": "closing",
+      "title": "Decisions requested today",
+      "bullets": [
+        "Approve two engineers for Q1 calibration and retrieval work",
+        "Endorse mandatory release gating from January",
+        "Nominate one owner per channel for rubric sign-off"
+      ],
+      "contact": "AI Engineering · ai-eng@example.com"
+    }
+  ]
+}

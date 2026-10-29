@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "slidesmith": {
+      "command": "python",
+      "args": ["-m", "slidesmith.mcp_server"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": ["get_schema", "list_themes", "validate_spec", "view_pages"]
+    }
+  }
+}
